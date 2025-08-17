@@ -8,6 +8,7 @@ class Settings(BaseSettings):
 	database_url: str = Field(..., alias="DATABASE_URL")
 	database_direct_url: Optional[str] = Field(None, alias="DATABASE_DIRECT_URL")
 	supabase_schema: str = Field("public", alias="SUPABASE_SCHEMA")
+	prompt_file: Optional[str] = Field(None, alias="PROMPT_FILE")
 
 	model_config = SettingsConfigDict(
 		env_file=".env",
