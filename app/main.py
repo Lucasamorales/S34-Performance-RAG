@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.db import connect, close
+from app.Routers import ingest
 
 app = FastAPI(title="Performance RAG API")
 
@@ -26,6 +27,8 @@ async def _shutdown():
     except Exception as e:
         # Log or handle shutdown errors as needed
         raise RuntimeError(f"Failed during shutdown: {e}")
+
+app.include_router(ingest.router, prefix="/api")  
 
 @app.get("/health")
 async def health():
